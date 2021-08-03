@@ -1,0 +1,6 @@
+{
+  "exec": "yarn lint && yarn build",
+  "ext": "ts,js",
+  "watch": "src",
+  "ignore": "src/**/*.test.ts"
+}
