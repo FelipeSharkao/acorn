@@ -5,7 +5,7 @@
   "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https://github.com/FelipeSharkao/)",
   "scripts": {
     "build": "rm -rf build/* && tsc",
-    "lint": "eslint",
+    "lint": "eslint src",
     "test": "jest",
     "dev": "nodemon"
   },
