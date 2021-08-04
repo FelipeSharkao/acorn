@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https://github.com/FelipeSharkao/)",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf build/* && tsc",
     "lint": "eslint",
     "test": "jest",
     "dev": "nodemon"
