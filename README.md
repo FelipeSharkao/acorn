@@ -1,6 +1,6 @@
 # Acorn
 
-Acorn is a small, joke, programming language language written in pure TypeScript. This is being created for fun and I have no intention to optimise it for production.
+Acorn is a small, toy, programming language language written in pure TypeScript. This is being created for fun and I have no intention to optimise it for production.
 
 ## Roadmap
 
@@ -11,7 +11,7 @@ Acorn is a small, joke, programming language language written in pure TypeScript
   - [ ] Lexer Framework
   - [ ] Binary IL generation
 - [ ] Static typing
-- [ ] POO
+- [ ] OOP
 
 ### VM
 
@@ -24,5 +24,5 @@ Acorn is a small, joke, programming language language written in pure TypeScript
   - [ ] Handle match
   - [ ] Handle functions
 - [ ] Simple Built-in
-- [ ] POO
+- [ ] OOP
 - [ ] Javascript interface 
