@@ -1,8 +1,4 @@
-import {
-  CodePosition,
-  GenericCodePosition,
-  normalizeCodePosition,
-} from './CodePosition'
+import { CodePosition } from './CodePosition'
 
 export default class RuntimeError extends Error {
   readonly fileName: string
@@ -13,13 +9,13 @@ export default class RuntimeError extends Error {
     message: string,
     fileName: string,
     line: string,
-    position: GenericCodePosition
+    position: CodePosition
   ) {
     super(message)
     this.name = 'RuntimeError'
 
     this.fileName = fileName
     this.line = line
-    this.position = normalizeCodePosition(position)
+    this.position = position
   }
 }
