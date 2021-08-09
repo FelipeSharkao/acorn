@@ -7,6 +7,11 @@ import {
   TimesParserNode,
 } from './node-types/symbols/operators'
 import {
+  DecimalParserNode,
+  IntParserNode,
+  WordParserNode,
+} from './node-types/word'
+import {
   LBracketParserNode,
   LParenParserNode,
   RBracketParserNode,
@@ -16,6 +21,9 @@ import {
 import { ParserNodeConstructor } from './node-types/lib/ParserNode'
 
 const nodeTypeList: readonly ParserNodeConstructor[] = [
+  WordParserNode,
+  DecimalParserNode,
+  IntParserNode,
   LParenParserNode,
   RParenParserNode,
   LBracketParserNode,
