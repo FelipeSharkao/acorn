@@ -1,4 +1,4 @@
-import ParserNode from '../ParserNode'
+import ParserNode from '../lib/ParserNode'
 
 export class OperatorParserNode extends ParserNode {}
 

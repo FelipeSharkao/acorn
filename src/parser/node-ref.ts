@@ -5,17 +5,17 @@ import {
   PlusParserNode,
   SlashParserNode,
   TimesParserNode,
-} from './symbols/operators'
+} from './node-types/symbols/operators'
 import {
   LBracketParserNode,
   LParenParserNode,
   RBracketParserNode,
   RParenParserNode,
-} from './symbols/scope'
+} from './node-types/symbols/scope'
 
-import { ParserNodeConstructor } from './ParserNode'
+import { ParserNodeConstructor } from './node-types/lib/ParserNode'
 
-const nodeTypeList: ReadonlyArray<ParserNodeConstructor> = [
+const nodeTypeList: readonly ParserNodeConstructor[] = [
   LParenParserNode,
   RParenParserNode,
   LBracketParserNode,

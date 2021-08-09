@@ -1,4 +1,4 @@
-import { CodePosition } from '../../utils/CodePosition'
+import { CodePosition } from '../../../utils/CodePosition'
 
 export type ParserNodeConstructor = {
   new (text: string, position: CodePosition): ParserNode
