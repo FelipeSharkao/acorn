@@ -1,5 +1,0 @@
-{
-  "exec": "yarn lint && yarn test && yarn build",
-  "ext": "ts,js",
-  "watch": "src"
-}
