@@ -12,12 +12,16 @@ export class NumberParserNode extends ParserNode {
     super(text, position)
     this.value = +this.text.replace(/_/g, '')
   }
+
+  toString(): string {
+    return `${this.constructor.name}(${this.value})`
+  }
 }
 
 export class IntParserNode extends NumberParserNode {
-  static pattern = /^-?\d(_?\d)*/
+  static pattern = /^\d(_?\d)*/
 }
 
 export class DecimalParserNode extends NumberParserNode {
-  static pattern = /^-?(\d(_?\d)*)?\.\d+/
+  static pattern = /^(\d(_?\d)*)?\.\d+/
 }
