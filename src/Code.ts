@@ -35,4 +35,8 @@ export default class Code {
       if (line.start <= position && line.end > position) return line
     }
   }
+
+  toString(): string {
+    return `${this.constructor.name}(${JSON.stringify(this.str)})`
+  }
 }

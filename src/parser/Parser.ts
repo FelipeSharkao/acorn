@@ -21,6 +21,10 @@ export default class Parser implements Iterable<ParserNode> {
   iter(): IterableIterator<ParserNode> {
     return this[Symbol.iterator]()
   }
+
+  toString(): string {
+    return `${this.constructor.name}(${this.code})`
+  }
 }
 
 export class ParserIterator implements IterableIterator<ParserNode> {
@@ -95,5 +99,9 @@ export class ParserIterator implements IterableIterator<ParserNode> {
         `Line of character ${this.cursor} not found in ${this.ref.code}`
       )
     }
+  }
+
+  toString(): string {
+    return `${this.ref}:${this.position.line}:${this.position.col}`
   }
 }

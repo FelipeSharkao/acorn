@@ -33,4 +33,8 @@ export default abstract class ParserNode {
   }
 
   pattern?: string | RegExp
+
+  toString(): string {
+    return `${this.constructor.name}(${JSON.stringify(this.text)})`
+  }
 }
