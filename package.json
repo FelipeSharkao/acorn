@@ -8,6 +8,7 @@
     "build": "clean && tsc",
     "lint": "eslint src",
     "test": "jest",
+    "app": "node build/index.js",
     "dev": "concurrently -n \"DIST,LINT\" -c \"blue,magenta\" \"yarn clean && tsc-watch --noClear --onSuccess 'yarn test'\" \"nodemon -x 'yarn lint' -w src -e ts -i */**/*.test.ts\""
   },
   "devDependencies": {
