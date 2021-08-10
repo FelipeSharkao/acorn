@@ -1,13 +1,13 @@
-import ParserNode, { ParserNodeConstructor } from './node-types/lib/ParserNode'
 import nodeTypeList, { ignoreCharacters } from './node-ref'
 
 import Code from '../Code'
 import { CodePosition } from '../utils/CodePosition'
+import ParserNode from './node-types/lib/ParserNode'
 import RuntimeError from '../utils/RuntimeError'
 
 export default class Parser implements Iterable<ParserNode> {
   readonly code: Code
-  protected typeList: readonly ParserNodeConstructor[]
+  protected typeList: readonly typeof ParserNode[]
 
   constructor(code: Code, typeList = nodeTypeList) {
     this.code = code

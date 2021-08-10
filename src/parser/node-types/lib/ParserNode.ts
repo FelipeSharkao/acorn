@@ -1,12 +1,6 @@
 import { CodePosition } from '../../../utils/CodePosition'
 
-export type ParserNodeConstructor = {
-  new (text: string, position: CodePosition): ParserNode
-  test(this: ParserNodeConstructor, input: string): number | undefined
-  pattern?: string | RegExp
-}
-
-export default abstract class ParserNode {
+export default class ParserNode {
   text: string
   position: CodePosition
 
@@ -15,7 +9,7 @@ export default abstract class ParserNode {
     this.position = position
   }
 
-  static test(this: ParserNodeConstructor, input: string): number | undefined {
+  static test(input: string): number | undefined {
     if (this.pattern == null)
       throw Error(
         `${this.name}.pattern in undefined, either define it or overwrite ${this.name}.test.`
@@ -32,7 +26,7 @@ export default abstract class ParserNode {
     }
   }
 
-  pattern?: string | RegExp
+  static pattern?: string | RegExp
 
   toString(): string {
     return `${this.constructor.name}(${JSON.stringify(this.text)})`

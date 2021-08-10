@@ -18,14 +18,14 @@ import {
   RParenParserNode,
 } from './node-types/symbols/scope'
 
-import { ParserNodeConstructor } from './node-types/lib/ParserNode'
+import ParserNode from './node-types/lib/ParserNode'
 
 export function ignoreCharacters(input: string): number | undefined {
   const match = /^(\s+|;;((?!;;)(\n|.))*(;;|$)|;[^\n]+)/.exec(input)
   if (match?.length) return match[0].length
 }
 
-const nodeTypeList: readonly ParserNodeConstructor[] = [
+const nodeTypeList: readonly typeof ParserNode[] = [
   DecimalParserNode,
   IntParserNode,
   LParenParserNode,

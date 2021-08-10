@@ -1,5 +1,4 @@
 import { DecimalParserNode, IntParserNode, WordParserNode } from '../word'
-import ParserNode, { ParserNodeConstructor } from '../lib/ParserNode'
 
 import Code from '../../../Code'
 
