@@ -20,10 +20,12 @@ import {
 
 import { ParserNodeConstructor } from './node-types/lib/ParserNode'
 
+export function ignoreCharacters(input: string): number | undefined {
+  const match = /^(\s+|;;((?!;;)(\n|.))*(;;|$)|;[^\n]+)/.exec(input)
+  if (match?.length) return match[0].length
+}
+
 const nodeTypeList: readonly ParserNodeConstructor[] = [
-  WordParserNode,
-  DecimalParserNode,
-  IntParserNode,
   LParenParserNode,
   RParenParserNode,
   LBracketParserNode,
@@ -34,6 +36,9 @@ const nodeTypeList: readonly ParserNodeConstructor[] = [
   TimesParserNode,
   DSlashParserNode,
   SlashParserNode,
+  DecimalParserNode,
+  IntParserNode,
+  WordParserNode,
 ]
 
 export default nodeTypeList
