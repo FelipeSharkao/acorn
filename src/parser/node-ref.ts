@@ -26,6 +26,8 @@ export function ignoreCharacters(input: string): number | undefined {
 }
 
 const nodeTypeList: readonly ParserNodeConstructor[] = [
+  DecimalParserNode,
+  IntParserNode,
   LParenParserNode,
   RParenParserNode,
   LBracketParserNode,
@@ -36,8 +38,6 @@ const nodeTypeList: readonly ParserNodeConstructor[] = [
   TimesParserNode,
   DSlashParserNode,
   SlashParserNode,
-  DecimalParserNode,
-  IntParserNode,
   WordParserNode,
 ]
 
