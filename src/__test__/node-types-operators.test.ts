@@ -5,7 +5,7 @@ import {
   PlusParserNode,
   SlashParserNode,
   TimesParserNode,
-} from '../operators'
+} from '../parser/node-types/symbols/operators'
 
 test('plus', () => {
   expect(PlusParserNode.test('+')).toBe(1)

@@ -1,12 +1,12 @@
 import {
   LParenParserNode,
   RParenParserNode,
-} from '../node-types/symbols/scope'
+} from '../parser/node-types/symbols/scope'
 
-import Code from '../../Code'
-import Parser from '../Parser'
-import { PlusParserNode } from '../node-types/symbols/operators'
-import { WordParserNode } from '../node-types/word'
+import Code from '../Code'
+import Parser from '../parser/Parser'
+import { PlusParserNode } from '../parser/node-types/symbols/operators'
+import { WordParserNode } from '../parser/node-types/word'
 
 function newParser(code: Code) {
   return new Parser(code, [

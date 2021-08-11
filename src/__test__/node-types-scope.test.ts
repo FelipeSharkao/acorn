@@ -3,7 +3,7 @@ import {
   LParenParserNode,
   RBracketParserNode,
   RParenParserNode,
-} from '../scope'
+} from '../parser/node-types/symbols/scope'
 
 test('left paren', () => {
   expect(LParenParserNode.test('(')).toBe(1)

@@ -1,6 +1,10 @@
-import { DecimalParserNode, IntParserNode, WordParserNode } from '../word'
+import {
+  DecimalParserNode,
+  IntParserNode,
+  WordParserNode,
+} from '../parser/node-types/word'
 
-import Code from '../../../Code'
+import Code from '../Code'
 
 test('word', () => {
   expect(WordParserNode.test('word +')).toBe(4)
