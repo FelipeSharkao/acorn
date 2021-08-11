@@ -5,11 +5,11 @@
   "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https://github.com/FelipeSharkao/)",
   "scripts": {
     "clean": "rm -rf build",
-    "build": "clean && tsc",
+    "build": "yarn clean && tsc --project tsconfig.prod.json",
     "lint": "eslint src",
-    "test": "jest",
+    "test": "tsc && jest",
     "app": "node build/index.js",
-    "dev": "concurrently -n \"DIST,LINT\" -c \"blue,magenta\" \"yarn clean && tsc-watch --noClear --onSuccess 'yarn test'\" \"nodemon -x 'yarn lint' -w src -e ts -i */**/*.test.ts\""
+    "dev": "concurrently -n \"DIST,LINT\" -c \"blue,magenta\" \"yarn clean && tsc-watch --noClear --onSuccess 'jest'\" \"nodemon -x 'yarn lint' -w src -e ts -i */**/*.test.ts\""
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
