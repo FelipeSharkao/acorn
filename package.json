@@ -4,19 +4,22 @@
   "license": "GPL-3.0",
   "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https://github.com/FelipeSharkao/)",
   "scripts": {
-    "build": "rm -rf build/* && tsc",
-    "lint": "eslint",
+    "clean": "rm -rf build",
+    "build": "clean && tsc",
+    "lint": "eslint src",
     "test": "jest",
-    "dev": "nodemon"
+    "app": "node build/index.js",
+    "dev": "concurrently -n \"DIST,LINT\" -c \"blue,magenta\" \"yarn clean && tsc-watch --noClear --onSuccess 'yarn test'\" \"nodemon -x 'yarn lint' -w src -e ts -i */**/*.test.ts\""
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
+    "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
-    "ts-jest": "^27.0.4",
+    "tsc-watch": "^4.4.0",
     "typescript": "^4.3.5"
   }
 }
