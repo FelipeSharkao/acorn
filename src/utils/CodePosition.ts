@@ -1,6 +1,6 @@
-import Code from '../Code'
+import Code from '../Code';
 
-export interface CodePosition {
+export default interface CodePosition {
   code: Code
   line: number
   col: number

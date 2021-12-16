@@ -30,9 +30,10 @@ export default class Code {
     })
   }
 
-  lineAt(position: number): Line | undefined {
-    for (const line of this.lines) {
-      if (line.start <= position && line.end > position) return line
+  lineAt(position: number): [number, Line] | undefined {
+    for (let i = 0; i < this.lines.length; i++) {
+      const line = this.lines[i]
+      if (line.start <= position && line.end > position) return [i + 1, line]
     }
   }
 

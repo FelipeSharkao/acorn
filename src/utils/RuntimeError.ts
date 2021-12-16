@@ -1,4 +1,4 @@
-import { CodePosition } from './CodePosition'
+import CodePosition from './CodePosition';
 
 export default class RuntimeError extends Error {
   readonly fileName: string
