@@ -1,27 +1,30 @@
-import ParserNode from '../lib/ParserNode'
+import { NodeType } from '../../../Node';
+import PatternNodeType from '../lib/PatternNodeType';
 
-export class OperatorParserNode extends ParserNode {}
+export const operatorNodeType = new NodeType('operator')
 
-export class PlusParserNode extends OperatorParserNode {
-  static pattern = '+'
-}
+export const plusNodeType = new PatternNodeType('plus', '+').inherit(
+  operatorNodeType
+)
 
-export class MinusParserNode extends OperatorParserNode {
-  static pattern = '-'
-}
+export const minusNodeType = new PatternNodeType('minus', '-').inherit(
+  operatorNodeType
+)
 
-export class TimesParserNode extends OperatorParserNode {
-  static pattern = '*'
-}
+export const timesNodeType = new PatternNodeType('times', '*').inherit(
+  operatorNodeType
+)
 
-export class DTimesParserNode extends OperatorParserNode {
-  static pattern = '**'
-}
+export const dTimesNodeType = new PatternNodeType(
+  'double-times',
+  '**'
+).inherit(operatorNodeType)
 
-export class SlashParserNode extends OperatorParserNode {
-  static pattern = '/'
-}
+export const slashNodeType = new PatternNodeType('slash', '/').inherit(
+  operatorNodeType
+)
 
-export class DSlashParserNode extends OperatorParserNode {
-  static pattern = '//'
-}
+export const dSlashNodeType = new PatternNodeType(
+  'double-slash',
+  '//'
+).inherit(operatorNodeType)

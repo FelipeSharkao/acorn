@@ -1,19 +1,20 @@
-import ParserNode from '../lib/ParserNode'
+import { NodeType } from '../../../Node';
+import PatternNodeType from '../lib/PatternNodeType';
 
-export class ScopeParserNode extends ParserNode {}
+export const scopeNodeType = new NodeType('scope')
 
-export class LParenParserNode extends ScopeParserNode {
-  static pattern = '('
-}
+export const lParenNodeType = new PatternNodeType('l-paren', '(').inherit(
+  scopeNodeType
+)
 
-export class RParenParserNode extends ScopeParserNode {
-  static pattern = ')'
-}
+export const rParenNodeType = new PatternNodeType('r-paren', ')').inherit(
+  scopeNodeType
+)
 
-export class LBracketParserNode extends ScopeParserNode {
-  static pattern = '['
-}
+export const lBracketNodeType = new PatternNodeType('l-bracket', '[').inherit(
+  scopeNodeType
+)
 
-export class RBracketParserNode extends ScopeParserNode {
-  static pattern = ']'
-}
+export const rBracketNodeType = new PatternNodeType('r-bracket', ']').inherit(
+  scopeNodeType
+)

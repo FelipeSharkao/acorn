@@ -1,4 +1,4 @@
-import Code, { Line } from '../Code'
+import Code, { Line } from '../Code';
 
 const str = 'First line\n\nThird line'
 const lines: Line[] = [
@@ -15,15 +15,15 @@ test('Code line parsing', () => {
 })
 
 test('Code line navigation', () => {
-  expect(code.lineAt(0)).toEqual(lines[0])
-  expect(code.lineAt(5)).toEqual(lines[0])
-  expect(code.lineAt(10)).toEqual(lines[0])
+  expect(code.lineAt(0)).toEqual([1, lines[0]])
+  expect(code.lineAt(5)).toEqual([1, lines[0]])
+  expect(code.lineAt(10)).toEqual([1, lines[0]])
 
-  expect(code.lineAt(11)).toEqual(lines[1])
+  expect(code.lineAt(11)).toEqual([2, lines[1]])
 
-  expect(code.lineAt(12)).toEqual(lines[2])
-  expect(code.lineAt(17)).toEqual(lines[2])
-  expect(code.lineAt(21)).toEqual(lines[2])
+  expect(code.lineAt(12)).toEqual([3, lines[2]])
+  expect(code.lineAt(17)).toEqual([3, lines[2]])
+  expect(code.lineAt(21)).toEqual([3, lines[2]])
   expect(code.lineAt(22)).toBeUndefined()
 
   expect(code.lineAt(str.length)).toBeUndefined()

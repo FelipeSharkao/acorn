@@ -1,27 +1,18 @@
-import { CodePosition } from '../../utils/CodePosition'
-import ParserNode from './lib/ParserNode'
+import { NodeType } from '../../Node';
+import PatternNodeType from './lib/PatternNodeType';
 
-export class WordParserNode extends ParserNode {
-  static pattern = /^[a-zA-Z_$](-?[a-zA-Z0-9_$])*/
-}
+export const wordNodeType = new PatternNodeType(
+  'word',
+  /^[a-zA-Z_$](-?[a-zA-Z0-9_$])*/
+)
 
-export class NumberParserNode extends ParserNode {
-  value: number
+export const numberNodeType = new NodeType('number')
 
-  constructor(text: string, position: CodePosition) {
-    super(text, position)
-    this.value = +this.text.replace(/_/g, '')
-  }
+export const intNodeType = new PatternNodeType('int', /^\d(_?\d)*(?!.)\b/).inherit(
+  numberNodeType
+)
 
-  toString(): string {
-    return `${this.constructor.name}(${this.value})`
-  }
-}
-
-export class IntParserNode extends NumberParserNode {
-  static pattern = /^\d(_?\d)*/
-}
-
-export class DecimalParserNode extends NumberParserNode {
-  static pattern = /^(\d(_?\d)*)?\.\d+/
-}
+export const decimalNodeType = new PatternNodeType(
+  'decimal',
+  /^(\d(_?\d)*)?\.\d+\b/
+).inherit(numberNodeType)

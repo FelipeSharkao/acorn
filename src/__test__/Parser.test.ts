@@ -1,19 +1,16 @@
-import {
-  LParenParserNode,
-  RParenParserNode,
-} from '../parser/node-types/symbols/scope'
-
-import Code from '../Code'
-import Parser from '../parser/Parser'
-import { PlusParserNode } from '../parser/node-types/symbols/operators'
-import { WordParserNode } from '../parser/node-types/word'
+import Code from '../Code';
+import Node from '../Node';
+import { plusNodeType } from '../parser/node-types/symbols/operators';
+import { lParenNodeType, rParenNodeType } from '../parser/node-types/symbols/scope';
+import { wordNodeType } from '../parser/node-types/word';
+import Parser from '../parser/Parser';
 
 function newParser(code: Code) {
   return new Parser(code, [
-    LParenParserNode,
-    RParenParserNode,
-    PlusParserNode,
-    WordParserNode,
+    lParenNodeType,
+    rParenNodeType,
+    plusNodeType,
+    wordNodeType,
   ])
 }
 
@@ -22,10 +19,10 @@ test('word list', () => {
   const parsedList = Array.from(newParser(code))
 
   expect(parsedList).toEqual([
-    new WordParserNode('foo', { code, line: 1, col: 1 }),
-    new WordParserNode('bar', { code, line: 1, col: 5 }),
-    new WordParserNode('qux', { code, line: 3, col: 1 }),
-    new WordParserNode('nux', { code, line: 3, col: 5 }),
+    new Node(wordNodeType, { code, line: 1, col: 1 }, 3),
+    new Node(wordNodeType, { code, line: 1, col: 5 }, 3),
+    new Node(wordNodeType, { code, line: 3, col: 1 }, 3),
+    new Node(wordNodeType, { code, line: 3, col: 5 }, 3),
   ])
 })
 
@@ -34,17 +31,17 @@ test('operators', () => {
   const parsedList = Array.from(newParser(code))
 
   expect(parsedList).toEqual([
-    new LParenParserNode('(', { code, line: 1, col: 1 }),
-    new WordParserNode('foo', { code, line: 1, col: 2 }),
-    new WordParserNode('bar', { code, line: 1, col: 6 }),
-    new RParenParserNode(')', { code, line: 1, col: 9 }),
-    new LParenParserNode('(', { code, line: 2, col: 1 }),
-    new WordParserNode('qux', { code, line: 2, col: 3 }),
-    new LParenParserNode('(', { code, line: 2, col: 7 }),
-    new WordParserNode('bar', { code, line: 2, col: 8 }),
-    new PlusParserNode('+', { code, line: 4, col: 7 }),
-    new WordParserNode('nux', { code, line: 4, col: 8 }),
-    new RParenParserNode(')', { code, line: 4, col: 11 }),
-    new RParenParserNode(')', { code, line: 4, col: 13 }),
+    new Node(lParenNodeType, { code, line: 1, col: 1 }, 1),
+    new Node(wordNodeType, { code, line: 1, col: 2 }, 3),
+    new Node(wordNodeType, { code, line: 1, col: 6 }, 3),
+    new Node(rParenNodeType, { code, line: 1, col: 9 }, 1),
+    new Node(lParenNodeType, { code, line: 2, col: 1 }, 1),
+    new Node(wordNodeType, { code, line: 2, col: 3 }, 3),
+    new Node(lParenNodeType, { code, line: 2, col: 7 }, 1),
+    new Node(wordNodeType, { code, line: 2, col: 8 }, 3),
+    new Node(plusNodeType, { code, line: 4, col: 7 }, 1),
+    new Node(wordNodeType, { code, line: 4, col: 8 }, 3),
+    new Node(rParenNodeType, { code, line: 4, col: 11 }, 1),
+    new Node(rParenNodeType, { code, line: 4, col: 13 }, 1),
   ])
 })

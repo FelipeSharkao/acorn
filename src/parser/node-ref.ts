@@ -1,44 +1,31 @@
+import ParserNodeType from './node-types/lib/ParserNodeType';
 import {
-  DSlashParserNode,
-  DTimesParserNode,
-  MinusParserNode,
-  PlusParserNode,
-  SlashParserNode,
-  TimesParserNode,
-} from './node-types/symbols/operators'
+  dSlashNodeType, dTimesNodeType, minusNodeType, plusNodeType, slashNodeType, timesNodeType,
+} from './node-types/symbols/operators';
 import {
-  DecimalParserNode,
-  IntParserNode,
-  WordParserNode,
-} from './node-types/word'
-import {
-  LBracketParserNode,
-  LParenParserNode,
-  RBracketParserNode,
-  RParenParserNode,
-} from './node-types/symbols/scope'
-
-import ParserNode from './node-types/lib/ParserNode'
+  lBracketNodeType, lParenNodeType, rBracketNodeType, rParenNodeType,
+} from './node-types/symbols/scope';
+import { decimalNodeType, intNodeType, wordNodeType } from './node-types/word';
 
 export function ignoreCharacters(input: string): number | undefined {
   const match = /^(\s+|;;((?!;;)(\n|.))*(;;|$)|;[^\n]+)/.exec(input)
   if (match?.length) return match[0].length
 }
 
-const nodeTypeList: readonly typeof ParserNode[] = [
-  DecimalParserNode,
-  IntParserNode,
-  LParenParserNode,
-  RParenParserNode,
-  LBracketParserNode,
-  RBracketParserNode,
-  PlusParserNode,
-  MinusParserNode,
-  DTimesParserNode,
-  TimesParserNode,
-  DSlashParserNode,
-  SlashParserNode,
-  WordParserNode,
+const nodeTypeList: readonly ParserNodeType[] = [
+  decimalNodeType,
+  intNodeType,
+  lParenNodeType,
+  rParenNodeType,
+  lBracketNodeType,
+  rBracketNodeType,
+  plusNodeType,
+  minusNodeType,
+  dTimesNodeType,
+  timesNodeType,
+  dSlashNodeType,
+  slashNodeType,
+  wordNodeType,
 ]
 
 export default nodeTypeList

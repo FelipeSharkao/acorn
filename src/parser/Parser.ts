@@ -1,24 +1,17 @@
-import nodeTypeList, { ignoreCharacters } from './node-ref'
+import Code from '../Code';
+import Node from '../Node';
+import CodePosition from '../utils/CodePosition';
+import RuntimeError from '../utils/RuntimeError';
+import nodeTypeList, { ignoreCharacters } from './node-ref';
 
-import Code from '../Code'
-import { CodePosition } from '../utils/CodePosition'
-import ParserNode from './node-types/lib/ParserNode'
-import RuntimeError from '../utils/RuntimeError'
+export default class Parser implements Iterable<Node> {
+  constructor(readonly code: Code, protected typeList = nodeTypeList) {}
 
-export default class Parser implements Iterable<ParserNode> {
-  readonly code: Code
-  protected typeList: readonly typeof ParserNode[]
-
-  constructor(code: Code, typeList = nodeTypeList) {
-    this.code = code
-    this.typeList = typeList
-  }
-
-  [Symbol.iterator](): IterableIterator<ParserNode> {
+  [Symbol.iterator](): IterableIterator<Node> {
     return new ParserIterator(this)
   }
 
-  iter(): IterableIterator<ParserNode> {
+  iter(): IterableIterator<Node> {
     return this[Symbol.iterator]()
   }
 
@@ -27,17 +20,16 @@ export default class Parser implements Iterable<ParserNode> {
   }
 }
 
-export class ParserIterator implements IterableIterator<ParserNode> {
+export class ParserIterator implements IterableIterator<Node> {
   protected cursor = 0
   protected position: CodePosition
-  readonly ref: Parser
 
-  constructor(ref: Parser) {
+  constructor(readonly ref: Parser) {
     this.ref = ref
-    this.position = { line: 1, col: 1, code: this.ref.code }
+    this.position = { code: this.ref.code, line: 1, col: 1 }
   }
 
-  [Symbol.iterator](): IterableIterator<ParserNode> {
+  [Symbol.iterator](): IterableIterator<Node> {
     return this
   }
 
@@ -52,10 +44,10 @@ export class ParserIterator implements IterableIterator<ParserNode> {
     if (lnCount == 1) this.position.col += characters
     else
       this.position.col =
-        this.cursor - (this.ref.code.lineAt(this.cursor)?.start ?? 0) + 1
+        this.cursor - (this.ref.code.lineAt(this.cursor)?.[1].start ?? 0) + 1
   }
 
-  next(): IteratorResult<ParserNode, undefined> {
+  next(): IteratorResult<Node, undefined> {
     let str: string, skipChar: number | undefined
     do {
       str = this.ref.code.str.slice(this.cursor)
@@ -66,18 +58,15 @@ export class ParserIterator implements IterableIterator<ParserNode> {
     if (this.cursor >= this.ref.code.str.length)
       return { done: true, value: undefined }
 
-    for (const NodeType of nodeTypeList) {
-      const matchLen = NodeType.test(str)
+    for (const type of nodeTypeList) {
+      const match = type.apply(this.ref.code, this.cursor)
 
-      if (matchLen != null) {
-        const matchStr = str.slice(0, matchLen)
-        const position = { ...this.position }
-
-        this.moveCursor(matchLen)
+      if (match != null) {
+        this.moveCursor(match.length)
 
         return {
           done: false,
-          value: new NodeType(matchStr, position),
+          value: match,
         }
       }
     }
@@ -91,7 +80,7 @@ export class ParserIterator implements IterableIterator<ParserNode> {
           .charCodeAt(0)
           .toString(16)})`,
         'inline',
-        line.str,
+        line[1].str,
         this.position
       )
     } else {

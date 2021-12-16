@@ -1,30 +1,28 @@
 import {
-  LBracketParserNode,
-  LParenParserNode,
-  RBracketParserNode,
-  RParenParserNode,
-} from '../parser/node-types/symbols/scope'
+  lBracketNodeType, lParenNodeType, rBracketNodeType, rParenNodeType,
+} from '../parser/node-types/symbols/scope';
+import { expectNode, expectNoNode } from './util/node-types';
 
 test('left paren', () => {
-  expect(LParenParserNode.test('(')).toBe(1)
-  expect(LParenParserNode.test('(word')).toBe(1)
-  expect(LParenParserNode.test(')')).toBeUndefined()
+  expectNode(lParenNodeType, '(', 0, 1)
+  expectNode(lParenNodeType, '(word', 0, 1)
+  expectNoNode(lParenNodeType, ')', 0)
 })
 
 test('right paren', () => {
-  expect(RParenParserNode.test('(')).toBeUndefined()
-  expect(RParenParserNode.test(')')).toBe(1)
-  expect(RParenParserNode.test(')word')).toBe(1)
+  expectNoNode(rParenNodeType, '(', 0)
+  expectNode(rParenNodeType, ')', 0, 1)
+  expectNode(rParenNodeType, ')word', 0, 1)
 })
 
 test('left bracket', () => {
-  expect(LBracketParserNode.test('[')).toBe(1)
-  expect(LBracketParserNode.test('[word')).toBe(1)
-  expect(LBracketParserNode.test(']')).toBeUndefined()
+  expectNode(lBracketNodeType, '[', 0, 1)
+  expectNode(lBracketNodeType, '[word', 0, 1)
+  expectNoNode(lBracketNodeType, ']', 0)
 })
 
 test('right bracket', () => {
-  expect(RBracketParserNode.test('[')).toBeUndefined()
-  expect(RBracketParserNode.test(']')).toBe(1)
-  expect(RBracketParserNode.test(']word')).toBe(1)
+  expectNoNode(rBracketNodeType, '[', 0)
+  expectNode(rBracketNodeType, ']', 0, 1)
+  expectNode(rBracketNodeType, ']word', 0, 1)
 })
