@@ -1,7 +1,8 @@
 import {
   lBracketNodeType, lParenNodeType, rBracketNodeType, rParenNodeType,
-} from '../parser/node-types/symbols/scope';
-import { expectNode, expectNoNode } from './util/node-types';
+} from '@/parser/node-types/symbols/scope'
+
+import { expectNode, expectNoNode } from './util/node-types'
 
 test('left paren', () => {
   expectNode(lParenNodeType, '(', 0, 1)

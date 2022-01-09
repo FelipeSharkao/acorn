@@ -1,7 +1,8 @@
-import Code from '../../../Code';
-import Node from '../../../Node';
-import CodePosition from '../../../utils/CodePosition';
-import ParserNodeType from './ParserNodeType';
+import Code from '@/Code'
+import Node from '@/Node'
+import CodePosition from '@/utils/CodePosition'
+
+import ParserNodeType from './ParserNodeType'
 
 export default class PatternNodeType extends ParserNodeType {
   constructor(name: string, readonly pattern: string | RegExp) {

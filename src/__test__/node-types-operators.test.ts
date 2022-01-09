@@ -1,7 +1,9 @@
 import {
-  dSlashNodeType, dTimesNodeType, minusNodeType, plusNodeType, slashNodeType, timesNodeType,
-} from '../parser/node-types/symbols/operators';
-import { expectNode, expectNoNode } from './util/node-types';
+  dSlashNodeType, dTimesNodeType, minusNodeType, plusNodeType, slashNodeType,
+  timesNodeType,
+} from '@/parser/node-types/symbols/operators'
+
+import { expectNode, expectNoNode } from './util/node-types'
 
 test('plus', () => {
   expectNode(plusNodeType, '+', 0, 1)

@@ -1,4 +1,10 @@
 module.exports = {
-  roots: ['<rootDir>/build'],
-  testRegex: ['\\.test\\.js$']
+  roots: ['<rootDir>/src'],
+  testRegex: ['\\.test\\.(j|t)s$'],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
 }

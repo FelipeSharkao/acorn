@@ -1,5 +1,8 @@
-import { decimalNodeType, intNodeType, wordNodeType } from '../parser/node-types/word';
-import { expectNode, expectNoNode } from './util/node-types';
+import {
+  decimalNodeType, intNodeType, wordNodeType,
+} from '@/parser/node-types/word'
+
+import { expectNode, expectNoNode } from './util/node-types'
 
 test('word', () => {
   expectNode(wordNodeType, 'word +', 0, 4)

@@ -1,4 +1,4 @@
-import CodePosition from './utils/CodePosition';
+import CodePosition from '@/utils/CodePosition'
 
 export class NodeType {
   protected _inherits?: NodeType

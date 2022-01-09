@@ -2,14 +2,16 @@
   "name": "acorn",
   "version": "0.0.1",
   "license": "GPL-3.0",
-  "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https://github.com/FelipeSharkao/)",
+  "author": "Felipe Nascimento <felipenasgomes@gmail.com> (https@//github.com/FelipeSharkao/)",
   "scripts": {
     "clean": "rm -rf build",
-    "build": "pnpm clean && tsc --project tsconfig.prod.json",
+    "build": "npm run clean && tsc --project tsconfig.prod.json && tscpaths -p tsconfig.prod.json -s ./src -o ./build",
     "lint": "eslint src",
-    "test": "tsc && jest",
+    "lint:watch": "nodemon -w src -e ts -x eslint src --cache",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "app": "node build/index.js",
-    "dev": "concurrently -n \"DIST,LINT\" -c \"blue,magenta\" \"pnpm clean && tsc-watch --noClear --onSuccess 'jest'\" \"nodemon -x 'pnpm lint' -w src -e ts -i */**/*.test.ts\""
+    "dev": "concurrently -n \"TEST,LINT\" -c \"blue,magenta\" npm:test:watch npm:lint:watch"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
@@ -19,7 +21,9 @@
     "eslint": "^7.32.0",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
+    "ts-jest": "^27.1.2",
     "tsc-watch": "^4.4.0",
+    "tscpaths": "^0.0.9",
     "typescript": "^4.3.5"
   }
 }

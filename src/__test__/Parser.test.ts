@@ -1,9 +1,11 @@
-import Code from '../Code';
-import Node from '../Node';
-import { plusNodeType } from '../parser/node-types/symbols/operators';
-import { lParenNodeType, rParenNodeType } from '../parser/node-types/symbols/scope';
-import { wordNodeType } from '../parser/node-types/word';
-import Parser from '../parser/Parser';
+import Code from '@/Code'
+import Node from '@/Node'
+import { plusNodeType } from '@/parser/node-types/symbols/operators'
+import {
+  lParenNodeType, rParenNodeType,
+} from '@/parser/node-types/symbols/scope'
+import { wordNodeType } from '@/parser/node-types/word'
+import Parser from '@/parser/Parser'
 
 function newParser(code: Code) {
   return new Parser(code, [

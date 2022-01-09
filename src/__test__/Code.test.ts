@@ -1,4 +1,4 @@
-import Code, { Line } from '../Code';
+import Code, { Line } from '@/Code'
 
 const str = 'First line\n\nThird line'
 const lines: Line[] = [

@@ -1,5 +1,6 @@
-import { NodeType } from '../../Node';
-import PatternNodeType from './lib/PatternNodeType';
+import { NodeType } from '@/Node'
+
+import PatternNodeType from './lib/PatternNodeType'
 
 export const wordNodeType = new PatternNodeType(
   'word',
@@ -8,9 +9,10 @@ export const wordNodeType = new PatternNodeType(
 
 export const numberNodeType = new NodeType('number')
 
-export const intNodeType = new PatternNodeType('int', /^\d(_?\d)*(?!.)\b/).inherit(
-  numberNodeType
-)
+export const intNodeType = new PatternNodeType(
+  'int',
+  /^\d(_?\d)*(?!.)\b/
+).inherit(numberNodeType)
 
 export const decimalNodeType = new PatternNodeType(
   'decimal',

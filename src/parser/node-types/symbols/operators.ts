@@ -1,5 +1,6 @@
-import { NodeType } from '../../../Node';
-import PatternNodeType from '../lib/PatternNodeType';
+import { NodeType } from '@/Node'
+
+import PatternNodeType from '../lib/PatternNodeType'
 
 export const operatorNodeType = new NodeType('operator')
 

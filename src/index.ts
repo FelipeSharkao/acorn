@@ -1,11 +1,11 @@
 import { argv, exit } from 'process'
-
-import Code from './Code'
-import Parser from './parser/Parser'
 import { createInterface } from 'readline'
 
-function parseAndPrint(input: string) {
-  const code = new Code(input)
+import Code from '@/Code'
+import Parser from '@/parser/Parser'
+
+function parseAndPrint(src: string) {
+  const code = new Code(src)
 
   for (const node of new Parser(code)) {
     console.log(node.toString())

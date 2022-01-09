@@ -1,6 +1,6 @@
-import Code from '../Code';
-import Node, { NodeType } from '../Node';
-import PatternNodeType from '../parser/node-types/lib/PatternNodeType';
+import Code from '@/Code'
+import Node, { NodeType } from '@/Node'
+import PatternNodeType from '@/parser/node-types/lib/PatternNodeType'
 
 test('simple string', () => {
   const foo = new PatternNodeType('foo', 'foo')

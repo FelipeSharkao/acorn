@@ -1,8 +1,9 @@
-import Code from '../Code';
-import Node from '../Node';
-import CodePosition from '../utils/CodePosition';
-import RuntimeError from '../utils/RuntimeError';
-import nodeTypeList, { ignoreCharacters } from './node-ref';
+import Code from '@/Code'
+import Node from '@/Node'
+import CodePosition from '@/utils/CodePosition'
+import RuntimeError from '@/utils/RuntimeError'
+
+import nodeTypeList, { ignoreCharacters } from './node-ref'
 
 export default class Parser implements Iterable<Node> {
   constructor(readonly code: Code, protected typeList = nodeTypeList) {}
